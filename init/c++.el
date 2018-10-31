@@ -1,0 +1,28 @@
+;--------MY COMPILE--------
+(global-set-key (kbd "C-c n") 'compile)
+(defun my_compile(command) (interactive)
+       (bookmark-delete "my_compile")
+       (bookmark-set "my_compile")
+       (add-hook 'compilation-finish-functions 'my-compilation-finish-function)
+       (recompile)
+       (setq my_compilation_command command))
+(defun my-compilation-finish-function(buffer desc) (interactive)
+       (switch-to-buffer-other-window "*shell*")
+       (comint-clear-buffer)
+       (setq unread-command-events (listify-key-sequence (kbd "M->")))
+       (setq unread-command-events (listify-key-sequence (kbd "C-a")))
+       (setq unread-command-events (listify-key-sequence (kbd "C-k")))
+       (insert my_compilation_command)
+       (setq unread-command-events (listify-key-sequence (kbd "RET")))
+       (remove-hook 'compilation-finish-functions 'my-compilation-finish-function nil)
+       )
+
+(defun my_compile2() (interactive)
+       (bookmark-jump-other-window "my_compile"))
+(global-set-key (kbd "C-c [") '(lambda () (interactive) (my_compile "time ./a.out")))
+(global-set-key (kbd "C-c {") '(lambda () (interactive) (my_compile "make run")))
+(global-set-key (kbd "C-c } }") '(lambda () (interactive) (my_compile "make ftp")))
+(global-set-key (kbd "C-c ]") 'my_compile2)
+
+;--------OTHER--------
+(global-set-key (kbd "C-c C-j") 'ff-find-other-file)

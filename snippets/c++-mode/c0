@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: sc0
+# key: sc0
+# --
+std::cout << "${1:}\n";

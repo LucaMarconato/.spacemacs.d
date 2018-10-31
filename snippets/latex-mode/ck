@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: ck
+# key: ck
+# --
+${1:}\color{black}
