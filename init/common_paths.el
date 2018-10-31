@@ -1,4 +1,4 @@
-(global-set-key (kbd "C-c j i") '(lambda () (interactive) (insert "~/.spacemacs.d/init.el")))
+(global-set-key (kbd "C-c j i") '(lambda () (interactive) (insert "~/.spacemacs.d/init/others.el")))
 (global-set-key (kbd "C-c j p") '(lambda () (interactive) (insert "~/programming/_projects/pdf-something")))
 (global-set-key (kbd "C-c j e") '(lambda () (interactive) (insert "~/programming/macOS/easyLyceum")))
 (global-set-key (kbd "C-c j y") '(lambda () (interactive) (insert "~/.spacemacs.d/snippets/")))
