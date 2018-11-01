@@ -26,3 +26,12 @@
 
 ;--------OTHER--------
 (global-set-key (kbd "C-c C-j") 'ff-find-other-file)
+(add-hook 'c-mode-common-hook '(lambda ()
+                                 (setq c-indent-level 4)
+                                 (setq c-basic-offset 4)
+                                 (setq tab-width 4)
+                                 (c-set-offset 'substatement-open 0)
+                                 ))
+(defun dotspacemacs/user-init ()
+  (push "/usr/local/share/emacs/site-lisp/rtags" load-path))
+

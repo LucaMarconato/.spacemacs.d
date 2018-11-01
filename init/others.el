@@ -20,3 +20,5 @@
 
 ;; (debug-watch 'window-combination-resize)
 (setq window-combination-resize nil)
+
+(setenv "PATH" (concat (getenv "PATH") ":/usr/local/bin"))
