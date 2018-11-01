@@ -18,4 +18,5 @@
 (global-set-key (kbd "C-c h") 'winner-undo)
 (global-set-key (kbd "C-c l") 'winner-redo)
 
+;; (debug-watch 'window-combination-resize)
 (setq window-combination-resize nil)

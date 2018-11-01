@@ -1,4 +1,5 @@
-;--------YASNIPPET-------- 
+;--------YASNIPPET--------
+(setq yas-snippet-dirs '("~/.spacemacs.d/snippets"))
 ;(use-package yasnippet)
 ; (yas-reload-all)
 ; (yas-global-mode 1)
