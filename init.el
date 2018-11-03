@@ -44,7 +44,7 @@ values."
      (cmake :variables cmake-enable-cmake-ide-support t)
      helm
      emacs-lisp
-     emoji
+     ;; emoji
      ess
      git
      github
@@ -53,7 +53,7 @@ values."
      markdown
      org
      osx
-     pdf-tools
+     ;; pdf-tools
      php
      python
      ;; (shell :variables
@@ -66,13 +66,14 @@ values."
      sql
      swift
      syntax-checking
+     ;; theming ;; for disabling the huge font for title in org-mode; further configuration is required, see here https://emacs.stackexchange.com/questions/22584/disable-enlarged-org-mode-header-appearance
      ;; version-control
      )
    ;; List of additional packages that will be installed without being
    ;; wrapped in a layer. If you need some configuration for these
    ;; packages, then consider creating a layer. You can also put the
    ;; configuration in `dotspacemacs/user-config'.
-   dotspacemacs-additional-packages '(multiple-cursors)
+   dotspacemacs-additional-packages '(multiple-cursors buffer-move)
    ;; A list of packages that cannot be updated.
    dotspacemacs-frozen-packages '()
    ;; A list of packages that will not be installed and loaded.
@@ -349,8 +350,10 @@ you should place your code here."
   (load-user-file "../.spacemacs.d/init/common_paths.el")
   (load-user-file "../.spacemacs.d/init/ess.el")
   (load-user-file "../.spacemacs.d/init/highlight.el")
+  (load-user-file "../.spacemacs.d/init/latex.el")
   (load-user-file "../.spacemacs.d/init/layouts.el")
   (load-user-file "../.spacemacs.d/init/multiple_cursors.el")
+  (load-user-file "../.spacemacs.d/init/others.el")
   (load-user-file "../.spacemacs.d/init/projectile_neotree.el")
   (load-user-file "../.spacemacs.d/init/python.el")
   (load-user-file "../.spacemacs.d/init/scrolling.el")
@@ -359,7 +362,6 @@ you should place your code here."
   (load-user-file "../.spacemacs.d/init/timestamp.el")
   (load-user-file "../.spacemacs.d/init/useful_lisp.el")
   (load-user-file "../.spacemacs.d/init/yasnippet.el")
-  (load-user-file "../.spacemacs.d/init/others.el")
   )
 
 ;; Do not write anything past this comment. This is where Emacs will
@@ -403,7 +405,7 @@ This function is called at the very end of Spacemacs initialization."
  '(evil-want-Y-yank-to-eol nil)
  '(package-selected-packages
    (quote
-    (helm-ctest levenshtein ess-smart-equals ess-R-data-view ctable ess julia-mode helm-company helm-c-yasnippet fuzzy company-web web-completion-data company-statistics company-shell company-emoji company-c-headers company-auctex company-anaconda company auto-yasnippet ac-ispell auto-complete unfill mwim cmake-ide multiple-cursors highlight-symbol auctex-latexmk yapfify xterm-color web-mode tagedit swift-mode stickyfunc-enhance srefactor sql-indent smeargle slim-mode shell-pop scss-mode sass-mode pyvenv pytest pyenv-mode py-isort pug-mode pip-requirements phpunit phpcbf php-extras php-auto-yasnippets yasnippet orgit org-ref pdf-tools key-chord ivy tablist org-projectile org-category-capture org-present org-pomodoro alert log4e gntp org-mime org-download multi-term mmm-mode markdown-toc markdown-mode magit-gitflow magit-gh-pulls live-py-mode insert-shebang hy-mode dash-functional htmlize helm-pydoc helm-gitignore helm-css-scss helm-bibtex parsebib haml-mode gnuplot gitignore-mode github-search github-clone github-browse-file gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link gist gh marshal logito pcache ht gh-md flyspell-correct-helm flyspell-correct flycheck-pos-tip pos-tip flycheck fish-mode evil-magit magit magit-popup git-commit ghub treepy graphql with-editor eshell-z eshell-prompt-extras esh-help emoji-cheat-sheet-plus emmet-mode drupal-mode php-mode disaster cython-mode cmake-mode clang-format biblio biblio-core auto-dictionary auctex anaconda-mode pythonic pbcopy launchctl reveal-in-osx-finder osx-trash osx-dictionary ws-butler winum volatile-highlights vi-tilde-fringe uuidgen use-package toc-org spaceline powerline restart-emacs request rainbow-delimiters popwin persp-mode pcre2el paradox spinner org-bullets open-junk-file neotree move-text macrostep lorem-ipsum linum-relative link-hint indent-guide hungry-delete hl-todo highlight-parentheses highlight-numbers parent-mode highlight-indentation helm-themes helm-swoop helm-projectile helm-mode-manager helm-make projectile pkg-info epl helm-flx helm-descbinds helm-ag google-translate golden-ratio flx-ido flx fill-column-indicator fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-tutor evil-surround evil-search-highlight-persist evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-lisp-state smartparens evil-indent-plus evil-iedit-state iedit evil-exchange evil-escape evil-ediff evil-args evil-anzu anzu evil goto-chg eval-sexp-fu highlight elisp-slime-nav dumb-jump diminish define-word column-enforce-mode clean-aindent-mode bind-map bind-key auto-highlight-symbol auto-compile packed ace-link ace-jump-helm-line helm helm-core popup which-key undo-tree org-plus-contrib hydra evil-unimpaired f s dash async aggressive-indent adaptive-wrap ace-window avy)))
+    (buffer-move ess-smart-equals ess-R-data-view ctable ess julia-mode helm-company helm-c-yasnippet fuzzy company-web web-completion-data company-statistics company-shell company-emoji company-c-headers company-auctex company-anaconda company auto-yasnippet ac-ispell auto-complete unfill mwim cmake-ide multiple-cursors highlight-symbol auctex-latexmk yapfify xterm-color web-mode tagedit swift-mode stickyfunc-enhance srefactor sql-indent smeargle slim-mode shell-pop scss-mode sass-mode pyvenv pytest pyenv-mode py-isort pug-mode pip-requirements phpunit phpcbf php-extras php-auto-yasnippets yasnippet orgit org-ref pdf-tools key-chord ivy tablist org-projectile org-category-capture org-present org-pomodoro alert log4e gntp org-mime org-download multi-term mmm-mode markdown-toc markdown-mode magit-gitflow magit-gh-pulls live-py-mode insert-shebang hy-mode dash-functional htmlize helm-pydoc helm-gitignore helm-css-scss helm-bibtex parsebib haml-mode gnuplot gitignore-mode github-search github-clone github-browse-file gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link gist gh marshal logito pcache ht gh-md flyspell-correct-helm flyspell-correct flycheck-pos-tip pos-tip flycheck fish-mode evil-magit magit magit-popup git-commit ghub treepy graphql with-editor eshell-z eshell-prompt-extras esh-help emoji-cheat-sheet-plus emmet-mode drupal-mode php-mode disaster cython-mode cmake-mode clang-format biblio biblio-core auto-dictionary auctex anaconda-mode pythonic pbcopy launchctl reveal-in-osx-finder osx-trash osx-dictionary ws-butler winum volatile-highlights vi-tilde-fringe uuidgen use-package toc-org spaceline powerline restart-emacs request rainbow-delimiters popwin persp-mode pcre2el paradox spinner org-bullets open-junk-file neotree move-text macrostep lorem-ipsum linum-relative link-hint indent-guide hungry-delete hl-todo highlight-parentheses highlight-numbers parent-mode highlight-indentation helm-themes helm-swoop helm-projectile helm-mode-manager helm-make projectile pkg-info epl helm-flx helm-descbinds helm-ag google-translate golden-ratio flx-ido flx fill-column-indicator fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-tutor evil-surround evil-search-highlight-persist evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-lisp-state smartparens evil-indent-plus evil-iedit-state iedit evil-exchange evil-escape evil-ediff evil-args evil-anzu anzu evil goto-chg eval-sexp-fu highlight elisp-slime-nav dumb-jump diminish define-word column-enforce-mode clean-aindent-mode bind-map bind-key auto-highlight-symbol auto-compile packed ace-link ace-jump-helm-line helm helm-core popup which-key undo-tree org-plus-contrib hydra evil-unimpaired f s dash async aggressive-indent adaptive-wrap ace-window avy)))
  '(safe-local-variable-values (quote ((cmake-ide-dir . "build")))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.

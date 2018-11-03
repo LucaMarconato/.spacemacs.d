@@ -1,6 +1,10 @@
 (setq ess-smart-S-assign-key "§")
 (global-set-key (kbd "C-=") (lambda () (interactive) (if (equal (char-before) (string-to-char " ")) (insert "<- ") (insert " <- "))))
 (setq comint-prompt-read-only nil)
+(setq ess-indent-level 4)
+(setq ess-indent-offset 4)
+
+(add-hook 'inferior-ess-mode-hook (lambda () (define-key inferior-ess-mode-map (kbd "C-k") 'kill-line)))
 
 ;; ;---------ESSH--------
 ;; (require 'essh)

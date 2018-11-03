@@ -22,3 +22,6 @@
 (setq window-combination-resize nil)
 
 (setenv "PATH" (concat (getenv "PATH") ":/usr/local/bin"))
+;; (setq mac-command-modifier 'super)
+(add-hook 'undo-tree-mode-hook (lambda () (setq undo-tree-visualizer-diff nil)))
+;; (global-set-key (kbd "M-3") '(lambda () (interactive) (insert "#")))
