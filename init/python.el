@@ -1,3 +1,7 @@
+;; TO TEST, pay attention to this: https://emacs.stackexchange.com/questions/33403/customize-creates-custom-set-faces-unintentionally
+;; (setq python-shell-interpreter "/usr/bin/python3")
+;; (setq flycheck-python-pycompile-executable "python3")
+
 ;;  ;--------PYTHON, IPYTHON--------
 ;; (require 'python)
 ;; (setq python-indent-offset 4)
