@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: emm
+# key: emm
+# --
+\emph{${1:}}\index[mathematical]{$1}${0:}

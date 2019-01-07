@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: xt
+# key: xt
+# --
+\mybold{X}^{\top}
