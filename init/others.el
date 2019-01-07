@@ -28,3 +28,10 @@
 
 (setq helm-buffer-max-length 40)
 ;; (setq dired-use-ls-dired t)
+;; ugly, but I need to make this working now
+;; (add-to-list 'load-path "/Users/macbook/.emacs.d/elpa/develop/org-trello-20180331.631/")
+;; (require 'org-trello)
+;; this was in custom-set-variables '(org-trello-current-prefix-keybinding "C-c o" nil (org-trello)))
+;; (setq org-trello-current-prefix-keybinding "C-c t")
+(spacemacs/toggle-auto-fill-mode-off)
+

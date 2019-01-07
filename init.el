@@ -53,6 +53,7 @@ values."
      latex
      markdown
      org
+     ;; (org :variables: org-enable-trello-support t)
      osx
      ;; pdf-tools
      php
@@ -374,48 +375,63 @@ you should place your code here."
 
 ;; Do not write anything past this comment. This is where Emacs will
 ;; auto-generate custom variable definitions.
-(custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(ansi-color-names-vector
-   ["#0a0814" "#f2241f" "#67b11d" "#b1951d" "#4f97d7" "#a31db1" "#28def0" "#b2b2b2"])
- '(custom-safe-themes
-   (quote
-    ("bffa9739ce0752a37d9b1eee78fc00ba159748f50dc328af4be661484848e476" default)))
- '(evil-want-Y-yank-to-eol nil)
- '(package-selected-packages
-   (quote
-    (ess-smart-equals ess-R-data-view ctable ess julia-mode helm-company helm-c-yasnippet fuzzy company-web web-completion-data company-statistics company-shell company-emoji company-c-headers company-auctex company-anaconda company auto-yasnippet ac-ispell auto-complete unfill mwim cmake-ide multiple-cursors highlight-symbol auctex-latexmk yapfify xterm-color web-mode tagedit swift-mode stickyfunc-enhance srefactor sql-indent smeargle slim-mode shell-pop scss-mode sass-mode pyvenv pytest pyenv-mode py-isort pug-mode pip-requirements phpunit phpcbf php-extras php-auto-yasnippets yasnippet orgit org-ref pdf-tools key-chord ivy tablist org-projectile org-category-capture org-present org-pomodoro alert log4e gntp org-mime org-download multi-term mmm-mode markdown-toc markdown-mode magit-gitflow magit-gh-pulls live-py-mode insert-shebang hy-mode dash-functional htmlize helm-pydoc helm-gitignore helm-css-scss helm-bibtex parsebib haml-mode gnuplot gitignore-mode github-search github-clone github-browse-file gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link gist gh marshal logito pcache ht gh-md flyspell-correct-helm flyspell-correct flycheck-pos-tip pos-tip flycheck fish-mode evil-magit magit magit-popup git-commit ghub treepy graphql with-editor eshell-z eshell-prompt-extras esh-help emoji-cheat-sheet-plus emmet-mode drupal-mode php-mode disaster cython-mode cmake-mode clang-format biblio biblio-core auto-dictionary auctex anaconda-mode pythonic pbcopy launchctl reveal-in-osx-finder osx-trash osx-dictionary ws-butler winum volatile-highlights vi-tilde-fringe uuidgen use-package toc-org spaceline powerline restart-emacs request rainbow-delimiters popwin persp-mode pcre2el paradox spinner org-bullets open-junk-file neotree move-text macrostep lorem-ipsum linum-relative link-hint indent-guide hungry-delete hl-todo highlight-parentheses highlight-numbers parent-mode highlight-indentation helm-themes helm-swoop helm-projectile helm-mode-manager helm-make projectile pkg-info epl helm-flx helm-descbinds helm-ag google-translate golden-ratio flx-ido flx fill-column-indicator fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-tutor evil-surround evil-search-highlight-persist evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-lisp-state smartparens evil-indent-plus evil-iedit-state iedit evil-exchange evil-escape evil-ediff evil-args evil-anzu anzu evil goto-chg eval-sexp-fu highlight elisp-slime-nav dumb-jump diminish define-word column-enforce-mode clean-aindent-mode bind-map bind-key auto-highlight-symbol auto-compile packed ace-link ace-jump-helm-line helm helm-core popup which-key undo-tree org-plus-contrib hydra evil-unimpaired f s dash async aggressive-indent adaptive-wrap ace-window avy)))
- '(safe-local-variable-values (quote ((cmake-ide-dir . "build")))))
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- )
 (defun dotspacemacs/emacs-custom-settings ()
   "Emacs custom settings.
 This is an auto-generated function, do not modify its content directly, use
 Emacs customize menu instead.
 This function is called at the very end of Spacemacs initialization."
-
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(ansi-color-names-vector
-   ["#0a0814" "#f2241f" "#67b11d" "#b1951d" "#4f97d7" "#a31db1" "#28def0" "#b2b2b2"])
- '(custom-safe-themes
-   (quote
-    ("bffa9739ce0752a37d9b1eee78fc00ba159748f50dc328af4be661484848e476" default)))
- '(evil-want-Y-yank-to-eol nil)
  '(package-selected-packages
    (quote
-    (csv-mode ess-smart-equals ess-R-data-view ctable ess julia-mode helm-company helm-c-yasnippet fuzzy company-web web-completion-data company-statistics company-shell company-emoji company-c-headers company-auctex company-anaconda company auto-yasnippet ac-ispell auto-complete unfill mwim cmake-ide multiple-cursors highlight-symbol auctex-latexmk yapfify xterm-color web-mode tagedit swift-mode stickyfunc-enhance srefactor sql-indent smeargle slim-mode shell-pop scss-mode sass-mode pyvenv pytest pyenv-mode py-isort pug-mode pip-requirements phpunit phpcbf php-extras php-auto-yasnippets yasnippet orgit org-ref pdf-tools key-chord ivy tablist org-projectile org-category-capture org-present org-pomodoro alert log4e gntp org-mime org-download multi-term mmm-mode markdown-toc markdown-mode magit-gitflow magit-gh-pulls live-py-mode insert-shebang hy-mode dash-functional htmlize helm-pydoc helm-gitignore helm-css-scss helm-bibtex parsebib haml-mode gnuplot gitignore-mode github-search github-clone github-browse-file gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link gist gh marshal logito pcache ht gh-md flyspell-correct-helm flyspell-correct flycheck-pos-tip pos-tip flycheck fish-mode evil-magit magit magit-popup git-commit ghub treepy graphql with-editor eshell-z eshell-prompt-extras esh-help emoji-cheat-sheet-plus emmet-mode drupal-mode php-mode disaster cython-mode cmake-mode clang-format biblio biblio-core auto-dictionary auctex anaconda-mode pythonic pbcopy launchctl reveal-in-osx-finder osx-trash osx-dictionary ws-butler winum volatile-highlights vi-tilde-fringe uuidgen use-package toc-org spaceline powerline restart-emacs request rainbow-delimiters popwin persp-mode pcre2el paradox spinner org-bullets open-junk-file neotree move-text macrostep lorem-ipsum linum-relative link-hint indent-guide hungry-delete hl-todo highlight-parentheses highlight-numbers parent-mode highlight-indentation helm-themes helm-swoop helm-projectile helm-mode-manager helm-make projectile pkg-info epl helm-flx helm-descbinds helm-ag google-translate golden-ratio flx-ido flx fill-column-indicator fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-tutor evil-surround evil-search-highlight-persist evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-lisp-state smartparens evil-indent-plus evil-iedit-state iedit evil-exchange evil-escape evil-ediff evil-args evil-anzu anzu evil goto-chg eval-sexp-fu highlight elisp-slime-nav dumb-jump diminish define-word column-enforce-mode clean-aindent-mode bind-map bind-key auto-highlight-symbol auto-compile packed ace-link ace-jump-helm-line helm helm-core popup which-key undo-tree org-plus-contrib hydra evil-unimpaired f s dash async aggressive-indent adaptive-wrap ace-window avy)))
- '(safe-local-variable-values (quote ((cmake-ide-dir . "build")))))
+    (all-the-icons writeroom-mode visual-fill-column yasnippet-snippets yapfify xterm-color ws-butler winum which-key web-mode web-beautify volatile-highlights vi-tilde-fringe uuidgen use-package unfill toc-org tagedit symon swift-mode string-inflection stickyfunc-enhance srefactor sql-indent spaceline-all-the-icons smeargle slim-mode shell-pop scss-mode sass-mode reveal-in-osx-finder restart-emacs rainbow-delimiters pyvenv pytest pyenv-mode py-isort pug-mode prettier-js popwin pippel pipenv pip-requirements phpunit phpcbf php-extras php-auto-yasnippets persp-mode pcre2el password-generator paradox overseer osx-trash osx-dictionary orgit org-ref org-projectile org-present org-pomodoro org-mime org-download org-bullets org-brain open-junk-file neotree nameless mwim multi-term move-text mmm-mode markdown-toc magithub magit-svn magit-gitflow magit-gh-pulls macrostep lorem-ipsum livid-mode live-py-mode link-hint launchctl json-navigator json-mode js2-refactor js-doc insert-shebang indent-guide importmagic impatient-mode hungry-delete hl-todo highlight-parentheses highlight-numbers highlight-indentation helm-xref helm-themes helm-swoop helm-rtags helm-pydoc helm-purpose helm-projectile helm-org-rifle helm-mode-manager helm-make helm-gitignore helm-git-grep helm-flx helm-descbinds helm-ctest helm-css-scss helm-company helm-c-yasnippet helm-ag google-translate google-c-style golden-ratio gnuplot gitignore-templates github-search github-clone gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link git-gutter-fringe git-gutter-fringe+ gist gh-md fuzzy font-lock+ flyspell-correct-helm flycheck-rtags flycheck-pos-tip flycheck-bashate flx-ido fish-mode fill-column-indicator fancy-battery eyebrowse expand-region evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-org evil-numbers evil-nerd-commenter evil-matchit evil-magit evil-lisp-state evil-lion evil-indent-plus evil-iedit-state evil-goggles evil-exchange evil-escape evil-ediff evil-cleverparens evil-args evil-anzu eval-sexp-fu ess-R-data-view eshell-z eshell-prompt-extras esh-help emmet-mode elisp-slime-nav editorconfig dumb-jump drupal-mode dotenv-mode doom-modeline disaster diminish diff-hl cython-mode csv-mode counsel-projectile company-web company-tern company-statistics company-shell company-rtags company-php company-c-headers company-auctex company-anaconda column-enforce-mode cmake-mode cmake-ide clean-aindent-mode clang-format centered-cursor-mode buffer-move browse-at-remote auto-yasnippet auto-highlight-symbol auto-dictionary auto-compile auctex-latexmk aggressive-indent ace-window ace-link ace-jump-helm-line ac-ispell)))
+ '(safe-local-variable-values
+   (quote
+    ((mg-TeX-index-options . "-s index.ist")
+     (eval setcar
+           (or
+            (cl-member "Index"
+                       (setq-local TeX-command-list
+                                   (copy-list TeX-command-list))
+                       :key
+                       (function car)
+                       :test
+                       (function string-equal))
+            (setq-local TeX-command-list
+                        (cons nil TeX-command-list)))
+           (quote
+            ("Index" "sh make_index.sh" TeX-run-index nil t :help "makeindex for index.sty")))
+     (eval setcar
+           (or
+            (cl-member "Index"
+                       (setq-local TeX-command-list
+                                   (copy-list TeX-command-list))
+                       :key
+                       (function car)
+                       :test
+                       (function string-equal))
+            (setq-local TeX-command-list
+                        (cons nil TeX-command-list)))
+           (quote
+            ("Index" "makeindex -s index.ist -t %s.plg -o %s.pnd %s.pdx; makeindex -s index.ist -t %s.slg -o %s.snd %s.sdx;" TeX-run-index nil t :help "makeindex for index.sty")))
+     (eval setcar
+           (or
+            (cl-member "Index"
+                       (setq-local TeX-command-list
+                                   (copy-list TeX-command-list))
+                       :key
+                       (function car)
+                       :test
+                       (function string-equal))
+            (setq-local TeX-command-list
+                        (cons nil TeX-command-list)))
+           (quote
+            ("Index" "makeindex -t %s.plg -o %s.pnd %s.pdx; makeindex -t %s.slg -o %s.snd %s.sdx;" TeX-run-index nil t :help "makeindex for index.sty")))
+     (javascript-backend . tern)
+     (javascript-backend . lsp)))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.

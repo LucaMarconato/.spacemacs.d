@@ -21,3 +21,6 @@
                                          (TeX-command-master)))
 
 (setenv "PATH" (concat (getenv "PATH") ":/Library/TeX/texbin"))
+
+(add-hook 'LaTeX-mode-hook '(lambda () (interactive) (setq fill-column 10000)))
+(setq TeX-insert-braces nil)

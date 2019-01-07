@@ -3,7 +3,6 @@
 
 (setq mc/cmds-to-run-for-all
       '(
-        LaTeX-babel-insert-hyphen
         LaTeX-insert-left-brace
         LaTeX-math-mu
         LaTeX-math-sigma
