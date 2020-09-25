@@ -22,7 +22,7 @@
 (setq window-combination-resize nil)
 
 (setenv "PATH" (concat (getenv "PATH") ":/usr/local/bin"))
-;; (setq mac-command-modifier 'super)
+(setq mac-command-modifier 'super)
 (add-hook 'undo-tree-mode-hook (lambda () (setq undo-tree-visualizer-diff nil)))
 ;; (global-set-key (kbd "M-3") '(lambda () (interactive) (insert "#")))
 
@@ -35,3 +35,27 @@
 ;; (setq org-trello-current-prefix-keybinding "C-c t")
 (spacemacs/toggle-auto-fill-mode-off)
 
+;; (require 'multi-web-mode)
+;; (setq mweb-default-major-mode 'html-mode)
+;; (setq mweb-tags '((php-mode "<\\?php\\|<\\? \\|<\\?=" "\\?>")
+;;                   (js-mode "<script +\\(type=\"text/javascript\"\\|language=\"javascript\"\\)[^>]*>" "</script>")
+;;                   (css-mode "<style +type=\"text/css\"[^>]*>" "</style>")))
+;; (setq mweb-filename-extensions '("php" "htm" "html" "ctp" "phtml" "php4" "php5"))
+;; (multi-web-global-mode 1)
+(setq ispell-program-name "/usr/local/bin/aspell")
+(custom-set-variables
+ '(vlf-application 'dont-ask))
+
+(defun markdown-html (buffer)
+  (princ (with-current-buffer buffer
+           (format "<!DOCTYPE html><html><title>Impatient Markdown</title><xmp theme=\"united\" style=\"display:none;\"> %s  </xmp><script src=\"http://strapdownjs.com/v/0.2/strapdown.js\"></script></html>" (buffer-substring-no-properties (point-min) (point-max))))
+         (current-buffer)))
+
+(setq browse-url-browser-function 'browse-url-chrome)
+(setq browse-url-chrome-program "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome")
+
+; to see the live preview of a markdown file in the browser use:
+; M-x httpd-start
+; M-x impatient-mode
+; go to localhost:8080/imp
+; M-x imp-set-user-filter RET markdown-html RET

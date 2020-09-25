@@ -1,3 +1,7 @@
+(setq python-shell-interpreter "python3")
+(setq flycheck-python-pycompile-executable "python3")
+;; (setq python-shell-interpreter "ipython"
+;;       python-shell-interpreter-args "-i")
 ;; TO TEST, pay attention to this: https://emacs.stackexchange.com/questions/33403/customize-creates-custom-set-faces-unintentionally
 ;; (setq python-shell-interpreter "/usr/bin/python3")
 ;; (setq flycheck-python-pycompile-executable "python3")

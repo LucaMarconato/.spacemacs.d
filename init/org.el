@@ -1,3 +1,9 @@
+;; set maximum indentation for description lists
+(setq org-list-description-max-indent 5)
+
+;; prevent demoting heading also shifting text inside sections
+;; (setq org-adapt-indentation nil)
+
 (with-eval-after-load 'org
   ;; (setq-default
   ;;  org-pretty-entities nil
@@ -49,3 +55,67 @@
                 (if (re-search-forward "^[ \t]*:END:" limit t)
                   (outline-flag-region start (point-at-eol) t)
                   (user-error msg))))))))))
+
+;; Some initial languages we want org-babel to support
+(org-babel-do-load-languages
+ 'org-babel-load-languages
+ '(
+   (python . t)
+   (R . t)
+   (ditaa . t)
+   (perl . t)
+   (gnuplot t)
+   ))
+
+; emoji in org mode, as discussed here https://github.com/iqbalansari/emacs-emojify/issues/35 
+(with-eval-after-load 'emojify
+  (remove-hook 'emojify-inhibit-functions #'emojify-in-org-tags-p))
+
+;; (define-key org-mode-map (kbd "C-c a") 'org-agenda)
+(global-set-key (kbd "C-c a") 'org-agenda)
+(global-set-key (kbd "C-c b") 'org-switchb)
+(defcustom org-export-html-protect-char-alist
+  '(("&" . "&amp;")
+    ("<" . "&lt;")
+    (">" . "&gt;")
+    (":turtle:" . "&#x1f422;")
+    (":dash:" . "&#x1f4a8;")
+    (":-)" . "&#x1f60a;")
+    (":-(" . "&#x1f61e;"))
+  "Alist of characters to be converted by `org-html-protect'."
+  :group 'org-export-html
+  :version "24.1"
+  :type '(repeat (cons (string :tag "Character")
+                       (string :tag "HTML equivalent"))))
+
+(setq org-todo-keywords
+      '((sequence "TODO" "IN-PROGRESS" "URGENT" "FUTURE" "MAYBE" "LATER" "DONE")))
+
+(setq org-agenda-skip-function-global 
+      '(org-agenda-skip-entry-if 'todo '("MAYBE" "LATER" "FUTURE")))
+;; (setq org-agenda-skip-function-global nil)
+
+ (setq org-todo-keyword-faces
+       '(("MAYBE" :foreground "black") ;:box (:line-width 2 :style released-button))
+         ("LATER" :foreground "#555555" :weight bold) ;:box (:line-width 2 :style released-button))
+         ;; ("TODO" :background "red1" :foreground "black" :weight bold) ;:box (:line-width 2 :style released-button))
+         ("IN-PROGRESS" :background "orange" :foreground "#555555" :weight bold) ;:box (:line-width 2 :style released-button))
+         ("URGENT" :background "red" :foreground "#555555" :weight bold) ;:box (:line-width 2 :style released-button))
+         ("FUTURE" :foreground "brown" :weight bold)))
+
+;; ("DONE" :background "forest green" :weight bold)))
+
+(setq org-agenda-custom-commands
+      '(("x" agenda)
+        ("y" agenda*)
+        ("w" todo "FUTURE")))
+(setq org-columns-default-format
+      "%25ITEM %TODO %3PRIORITY %TIMESTAMP")
+
+; supporting emails in org via org-protocol
+(defun open-mail-in-apple-mail (message)
+  (shell-command
+   (format "open -a \"Mail.app\" \"message:%s\"" message)))
+
+; add support for message:// links
+(org-add-link-type "message" 'open-mail-in-apple-mail)

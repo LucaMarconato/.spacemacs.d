@@ -112,3 +112,20 @@
       ;; (buf-move-up)
       )))
 (global-set-key (kbd "C-c 5") 'thesis-layout-2)
+
+(defun org-mode-layout-1 ()
+  "Create 4-pane layout of windows in the current frame, showing commonly used org-mode buffers"
+  (interactive)
+  (when (buffer-file-name)
+    (delete-other-windows)
+    (save-selected-window
+      (split-window-horizontally)
+      (split-window-horizontally)
+      (find-file "~/org/free_time.org")
+      (select-window (next-window) t)
+      (find-file "~/org/today.org")
+      (select-window (next-window) t)
+      (find-file "~/org/learning.org")
+      (balance-windows)
+      )))
+(global-set-key (kbd "C-c 6") 'org-mode-layout-1)
