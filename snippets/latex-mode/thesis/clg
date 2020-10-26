@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: clg
+# key: clg
+# --
+${1:}\color{lightgray}

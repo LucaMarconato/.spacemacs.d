@@ -1,5 +1,5 @@
 # -*- mode: snippet -*-
-# name: matlab
-# key: matlab
+# name: run_matlab
+# key: run_matlab
 # --
 /Applications/MATLAB_R2017a.app/bin/matlab -nosplash -nodesktop

@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: emb
+# key: emb
+# --
+\emph{${1:}}\index[biological]{$1}${0:}

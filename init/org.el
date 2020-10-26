@@ -89,17 +89,24 @@
                        (string :tag "HTML equivalent"))))
 
 (setq org-todo-keywords
-      '((sequence "TODO" "IN-PROGRESS" "URGENT" "FUTURE" "MAYBE" "LATER" "DONE")))
+      '((sequence "TODO" "TODAY" "IN-PROGRESS" "WAITING" "URGENT" "FUTURE" "MAYBE" "LATER" "DONE")))
 
-(setq org-agenda-skip-function-global 
-      '(org-agenda-skip-entry-if 'todo '("MAYBE" "LATER" "FUTURE")))
-;; (setq org-agenda-skip-function-global nil)
+(defun my-org-show-only-active-todos ()
+  (setq org-agenda-skip-function-global 
+        '(org-agenda-skip-entry-if 'todo '("MAYBE" "LATER" "FUTURE"))))
+(defun my-org-show-all-todos ()
+  (setq org-agenda-skip-function-global nil))
+
+(my-org-show-only-active-todos)
+;; (my-org-show-all-todos)
 
  (setq org-todo-keyword-faces
        '(("MAYBE" :foreground "black") ;:box (:line-width 2 :style released-button))
          ("LATER" :foreground "#555555" :weight bold) ;:box (:line-width 2 :style released-button))
          ;; ("TODO" :background "red1" :foreground "black" :weight bold) ;:box (:line-width 2 :style released-button))
-         ("IN-PROGRESS" :background "orange" :foreground "#555555" :weight bold) ;:box (:line-width 2 :style released-button))
+         ;; ("IN-PROGRESS" :background "orange" :foreground "#555555" :weight bold) ;:box (:line-width 2 :style released-button))
+         ("TODAY" :background "orange" :foreground "#555555" :weight bold) ;:box (:line-width 2 :style released-button))
+         ("WAITING" :foreground "#98FB98" :weight bold) ;:box (:line-width 2 :style released-button))
          ("URGENT" :background "red" :foreground "#555555" :weight bold) ;:box (:line-width 2 :style released-button))
          ("FUTURE" :foreground "brown" :weight bold)))
 
@@ -108,7 +115,9 @@
 (setq org-agenda-custom-commands
       '(("x" agenda)
         ("y" agenda*)
-        ("w" todo "FUTURE")))
+        ("w" todo "FUTURE")
+
+        ))
 (setq org-columns-default-format
       "%25ITEM %TODO %3PRIORITY %TIMESTAMP")
 
@@ -119,3 +128,36 @@
 
 ; add support for message:// links
 (org-add-link-type "message" 'open-mail-in-apple-mail)
+
+(defun open-pdf-in-el (message)
+  (shell-command
+   (format "/Users/macbook/miniconda3/envs/zotero/bin/python \"/Users/macbook/programming/python/zotero/org_related.py\" --open-pdf-by-citation \"cit:%s\"" message)))
+(org-add-link-type "cit" 'open-pdf-in-el)
+
+(setq fill-column 240)
+;; (auto-fill-mode -1)
+;; (add-hook 'org-mode-hook #'turn-off-auto-fill)
+(remove-hook 'org-mode-hook #'auto-fill-mode)
+(remove-hook 'org-mode-hook #'turn-on-auto-fill)
+
+(setq org-agenda-sorting-strategy 
+      '((agenda category-down habit-down time-up priority-down)
+        (todo category-down priority-down)
+        (tags category-down priority-down)
+        (search category-keep)))
+
+(setq org-todo-sort-order '("URGENT" "TODAY" "IN-PROGRESS" "TODO" "WAITING" "FUTURE" "MAYBE" "LATER" "DONE"))
+
+(defun my:user-todo-sort (a b)
+  "Sort todo based on which I want to see first"
+  (when-let ((state-a (get-text-property 14 'todo-state a))
+             (state-b (get-text-property 14 'todo-state b))
+             (cmp (--map (cl-position-if (lambda (x)
+                                           (equal x it))
+                                         org-todo-sort-order)
+                         (list state-a state-b))))
+    (cond ((apply '> cmp) 1)
+          ((apply '< cmp) -1)
+          (t nil))))
+(setq org-agenda-cmp-user-defined 'my:user-todo-sort)
+

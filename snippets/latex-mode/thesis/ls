@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: ls
+# key: ls
+# --
+\lambda_{\text{s}}

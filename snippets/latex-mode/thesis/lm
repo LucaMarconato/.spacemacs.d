@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: lm
+# key: lm
+# --
+\lambda_{\text{m}}
