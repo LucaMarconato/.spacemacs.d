@@ -123,7 +123,7 @@
       (split-window-horizontally)
       (find-file "~/Dropbox/org/free_time.org")
       (select-window (next-window) t)
-      (find-file "~/Dropbox/org/today.org")
+      (find-file "~/Dropbox/org/work.org")
       (select-window (next-window) t)
       (find-file "~/Dropbox/org/learning.org")
       (balance-windows)

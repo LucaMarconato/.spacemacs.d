@@ -89,26 +89,29 @@
                        (string :tag "HTML equivalent"))))
 
 (setq org-todo-keywords
-      '((sequence "TODO" "TODAY" "IN-PROGRESS" "WAITING" "URGENT" "FUTURE" "MAYBE" "LATER" "DONE")))
+      '((sequence "WAITING" "TODO" "IN-PROGRESS" "TODAY" "NOW" "URGENT" "FUTURE" "NEVER" "MAYBE" "LATER" "DONE")))
 
 (defun my-org-show-only-active-todos ()
   (setq org-agenda-skip-function-global 
-        '(org-agenda-skip-entry-if 'todo '("MAYBE" "LATER" "FUTURE"))))
+        '(org-agenda-skip-entry-if 'todo '("MAYBE" "LATER" "NEVER" "FUTURE"))))
 (defun my-org-show-all-todos ()
   (setq org-agenda-skip-function-global nil))
 
 (my-org-show-only-active-todos)
+
 ;; (my-org-show-all-todos)
 
- (setq org-todo-keyword-faces
-       '(("MAYBE" :foreground "black") ;:box (:line-width 2 :style released-button))
-         ("LATER" :foreground "#555555" :weight bold) ;:box (:line-width 2 :style released-button))
-         ;; ("TODO" :background "red1" :foreground "black" :weight bold) ;:box (:line-width 2 :style released-button))
-         ;; ("IN-PROGRESS" :background "orange" :foreground "#555555" :weight bold) ;:box (:line-width 2 :style released-button))
-         ("TODAY" :background "orange" :foreground "#555555" :weight bold) ;:box (:line-width 2 :style released-button))
-         ("WAITING" :foreground "#98FB98" :weight bold) ;:box (:line-width 2 :style released-button))
-         ("URGENT" :background "red" :foreground "#555555" :weight bold) ;:box (:line-width 2 :style released-button))
-         ("FUTURE" :foreground "brown" :weight bold)))
+(setq org-todo-keyword-faces
+      '(("MAYBE" :foreground "#444444") ;:box (:line-width 2 :style released-button))
+        ("NEVER" :foreground "black") ;:box (:line-width 2 :style released-button))
+        ("LATER" :foreground "#666666" :weight bold) ;:box (:line-width 2 :style released-button))
+        ;; ("TODO" :background "red1" :foreground "black" :weight bold) ;:box (:line-width 2 :style released-button))
+        ;; ("IN-PROGRESS" :background "orange" :foreground "#555555" :weight bold) ;:box (:line-width 2 :style released-button))
+        ("TODAY" :background "orange" :foreground "#555555" :weight bold) ;:box (:line-width 2 :style released-button))
+        ("NOW" :background "orange" :foreground "#555555" :weight bold) ;:box (:line-width 2 :style released-button))
+        ("WAITING" :foreground "#98FB98" :weight bold) ;:box (:line-width 2 :style released-button))
+        ("URGENT" :background "red" :foreground "#555555" :weight bold) ;:box (:line-width 2 :style released-button))
+        ("FUTURE" :foreground "brown" :weight bold)))
 
 ;; ("DONE" :background "forest green" :weight bold)))
 
@@ -140,13 +143,13 @@
 (remove-hook 'org-mode-hook #'auto-fill-mode)
 (remove-hook 'org-mode-hook #'turn-on-auto-fill)
 
+(setq org-todo-sort-order '("URGENT" "NOW" "TODAY" "IN-PROGRESS" "TODO" "WAITING" "FUTURE" "MAYBE" "LATER" "NEVER" "DONE"))
+
 (setq org-agenda-sorting-strategy 
-      '((agenda category-down habit-down time-up priority-down)
-        (todo category-down priority-down)
+      '((agenda priority-down category-down habit-down time-up )
+        (todo todo-state-down priority-down category-down)
         (tags category-down priority-down)
         (search category-keep)))
-
-(setq org-todo-sort-order '("URGENT" "TODAY" "IN-PROGRESS" "TODO" "WAITING" "FUTURE" "MAYBE" "LATER" "DONE"))
 
 (defun my:user-todo-sort (a b)
   "Sort todo based on which I want to see first"

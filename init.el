@@ -543,6 +543,7 @@ before packages are loaded."
                                   ("L" "Protocol Link" entry (file+headline "~/org/inbox.org" "Inbox")
                                    "* %? [[%:link][%:description]] \nCaptured On: %U"))))
   )
+;;
 
 ;; Do not write anything past this comment. This is where Emacs will
 ;; auto-generate custom variable definitions.
