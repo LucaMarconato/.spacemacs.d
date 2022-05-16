@@ -59,3 +59,6 @@
 ; M-x impatient-mode
 ; go to localhost:8080/imp
 ; M-x imp-set-user-filter RET markdown-html RET
+(global-set-key (kbd "C-c z") 'reveal-in-osx-finder)
+(setq mark-even-if-inactive nil)
+(global-undo-tree-mode)

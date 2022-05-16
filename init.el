@@ -45,18 +45,30 @@ This function should only modify configuration layer settings."
      ;; ----------------------------------------------------------------
      ;; auto-completion
      ;; better-defaults
+     latex
+     lsp
+     ;; ess
+     bibtex
      emacs-lisp
+     ;; google-calendar; doesn't work
      ;; git
      helm
      ;; lsp
      ;; markdown
      mu4e
-     (setq-default dotspacemacs-configuration-layers '(
+     ;; (setq-default dotspacemacs-configuration-layers '(
                                                        (multiple-cursors :variables
                                                                          multiple-cursors-backend 'mc
                                                                          mc/cmds-to-run-once '(upcase-region))
                                                        (company-emoji)
-                                                       ))
+                                                       (ess :variables ess-r-backend 'lsp)
+                                                       ;; (org-gcal
+                                                       ;;  :ensure t
+                                                       ;;  :config
+                                                       ;;  (setq org-gcal-client-id "m.lucalmer@gmail.com"
+                                                       ;;        org-gcal-client-secret "8PUeWK28m8mfdV0L7el8R7ho"
+                                                       ;;        org-gcal-file-alist '(("m.lucalmer@gmail.com" .  "~/Dropbox/org/free_time.org"))))
+                                                       ;; ))
      ;; org
      ;; (shell :variables
      ;;        shell-default-height 30
@@ -74,7 +86,7 @@ This function should only modify configuration layer settings."
    ;; To use a local version of a package, use the `:location' property:
    ;; '(your-package :location "~/path/to/your-package/")
    ;; Also include the dependencies as they will not be resolved automatically.
-   dotspacemacs-additional-packages '(multiple-cursors company-emoji)
+   dotspacemacs-additional-packages '(multiple-cursors company-emoji reveal-in-osx-finder)
 
    ;; A list of packages that cannot be updated.
    dotspacemacs-frozen-packages '()
@@ -503,47 +515,47 @@ before packages are loaded."
            user-emacs-directory)
           ((boundp 'user-init-directory)
            user-init-directory)
-          (t "~/.my_spacemacs.d/init/")))
+          (t "~/.spacemacs.d/init/")))
 
   (defun load-user-file (file)
     (interactive "f")
     "Load a file in current user's configuration directory"
     (load-file (expand-file-name file user-init-dir)))
 
-  (load-user-file "~/.my_spacemacs.d/init/accents.el")
-  (load-user-file "~/.my_spacemacs.d/init/c++.el")
-  (load-user-file "~/.my_spacemacs.d/init/common_paths.el")
-  (load-user-file "~/.my_spacemacs.d/init/ess.el")
-  (load-user-file "~/.my_spacemacs.d/init/highlight.el")
-  (load-user-file "~/.my_spacemacs.d/init/latex.el")
-  (load-user-file "~/.my_spacemacs.d/init/layouts.el")
-  (load-user-file "~/.my_spacemacs.d/init/multiple_cursors.el")
-  (load-user-file "~/.my_spacemacs.d/init/others.el")
-  (load-user-file "~/.my_spacemacs.d/init/projectile_neotree.el")
-  (load-user-file "~/.my_spacemacs.d/init/python.el")
-  (load-user-file "~/.my_spacemacs.d/init/scrolling.el")
-  (load-user-file "~/.my_spacemacs.d/init/shell.el")
-  (load-user-file "~/.my_spacemacs.d/init/split_screen.el")
-  (load-user-file "~/.my_spacemacs.d/init/timestamp.el")
-  (load-user-file "~/.my_spacemacs.d/init/useful_lisp.el")
-  (load-user-file "~/.my_spacemacs.d/init/yasnippet.el")
-  (load-user-file "~/.my_spacemacs.d/init/octave_matlab.el")
-  (load-user-file "~/.my_spacemacs.d/init/org.el")
-  (load-user-file "~/.my_spacemacs.d/init/mu_configuration.el")
+  (load-user-file "~/.spacemacs.d/init/accents.el")
+  (load-user-file "~/.spacemacs.d/init/c++.el")
+  (load-user-file "~/.spacemacs.d/init/common_paths.el")
+  (load-user-file "~/.spacemacs.d/init/ess.el")
+  (load-user-file "~/.spacemacs.d/init/highlight.el")
+  (load-user-file "~/.spacemacs.d/init/latex.el")
+  (load-user-file "~/.spacemacs.d/init/layouts.el")
+  (load-user-file "~/.spacemacs.d/init/multiple_cursors.el")
+  (load-user-file "~/.spacemacs.d/init/others.el")
+  (load-user-file "~/.spacemacs.d/init/projectile_neotree.el")
+  (load-user-file "~/.spacemacs.d/init/python.el")
+  (load-user-file "~/.spacemacs.d/init/scrolling.el")
+  (load-user-file "~/.spacemacs.d/init/shell.el")
+  (load-user-file "~/.spacemacs.d/init/split_screen.el")
+  (load-user-file "~/.spacemacs.d/init/timestamp.el")
+  (load-user-file "~/.spacemacs.d/init/useful_lisp.el")
+  (load-user-file "~/.spacemacs.d/init/yasnippet.el")
+  (load-user-file "~/.spacemacs.d/init/octave_matlab.el")
+  (load-user-file "~/.spacemacs.d/init/org.el")
+  (load-user-file "~/.spacemacs.d/init/mu_configuration.el")
+  (load-user-file "~/.spacemacs.d/init/bibtex.el")
 
   (server-start)
   (require 'org-protocol)
   (with-eval-after-load 'org
     (add-to-list 'org-modules 'org-protocol)
     (setq org-capture-templates '(
-                                  ("p" "Protocol" entry (file+headline "~/org/inbox.org" "Inbox")
+                                  ("p" "Protocol" entry (file+headline "~/Dropbox/org/inbox.org" "Inbox")
                                    "* %^{Title}\nSource: %u, %c\n #+BEGIN_QUOTE\n%i\n#+END_QUOTE\n\n\n%?")
-                                  ("m" "Mail" entry (file+headline "~/org/inbox.org" "Inbox")
+                                  ("m" "Mail" entry (file+headline "~/Dropbox/org/inbox.org" "Inbox")
                                    "* %^{Title}\nSource: %u, %c\n #+BEGIN_QUOTE\n%i\n#+END_QUOTE\n\n\n%?")
-                                  ("L" "Protocol Link" entry (file+headline "~/org/inbox.org" "Inbox")
+                                  ("L" "Protocol Link" entry (file+headline "~/Dropbox/org/inbox.org" "Inbox")
                                    "* %? [[%:link][%:description]] \nCaptured On: %U"))))
   )
-;;
 
 ;; Do not write anything past this comment. This is where Emacs will
 ;; auto-generate custom variable definitions.
@@ -559,9 +571,40 @@ This function is called at the very end of Spacemacs initialization."
  ;; If there is more than one, they won't work right.
  '(emojify-emoji-set "twemoji-v2")
  '(org-agenda-files
-   '("~/Dropbox/org/aesthetic.org" "~/Dropbox/org/learning.org" "~/Dropbox/org/free_time.org" "~/Dropbox/org/today.org"))
+   '("~/Dropbox/org/back_to_italy.org" "~/Dropbox/org/side_notes/people.org" "~/Dropbox/org/learning.org" "~/Dropbox/org/aesthetic.org" "~/Dropbox/org/free_time.org" "~/Dropbox/org/work.org" "~/Dropbox/org/work/uzh.org" "~/Dropbox/org/work/spatialmuon.org"))
+ '(org-agenda-tags-column -80)
  '(package-selected-packages
-   '(csv-mode web-mode tagedit slim-mode scss-mode sass-mode pug-mode helm-css-scss haml-mode emmet-mode counsel-css company-web web-completion-data vmd-mode mmm-mode markdown-toc gh-md emoji-cheat-sheet-plus company-emoji web-beautify tide typescript-mode tern prettier-js nodejs-repl livid-mode skewer-mode js2-refactor yasnippet js2-mode js-doc import-js grizzl impatient-mode htmlize simple-httpd add-node-modules-path yapfify stickyfunc-enhance pytest pyenv-mode py-isort pippel pipenv pyvenv pip-requirements lsp-python-ms live-py-mode importmagic epc ctable concurrent deferred helm-pydoc helm-gtags helm-cscope xcscope ggtags dap-mode lsp-treemacs bui lsp-mode markdown-mode dash-functional cython-mode counsel-gtags counsel swiper ivy company-anaconda company blacken anaconda-mode pythonic ws-butler writeroom-mode winum which-key volatile-highlights vi-tilde-fringe uuidgen use-package treemacs-projectile treemacs-persp treemacs-icons-dired toc-org symon symbol-overlay string-inflection spaceline-all-the-icons restart-emacs request rainbow-delimiters popwin pcre2el password-generator paradox overseer org-superstar open-junk-file nameless multiple-cursors move-text macrostep lorem-ipsum link-hint indent-guide hybrid-mode hungry-delete hl-todo highlight-parentheses highlight-numbers highlight-indentation helm-xref helm-themes helm-swoop helm-purpose helm-projectile helm-mode-manager helm-make helm-ls-git helm-flx helm-descbinds helm-ag google-translate golden-ratio font-lock+ flycheck-package flycheck-elsa flx-ido fill-column-indicator fancy-battery eyebrowse expand-region evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-textobj-line evil-surround evil-numbers evil-nerd-commenter evil-matchit evil-lisp-state evil-lion evil-indent-plus evil-iedit-state evil-goggles evil-exchange evil-escape evil-ediff evil-cleverparens evil-args evil-anzu eval-sexp-fu emr elisp-slime-nav editorconfig dumb-jump dotenv-mode diminish devdocs define-word column-enforce-mode clean-aindent-mode centered-cursor-mode auto-highlight-symbol auto-compile aggressive-indent ace-link ace-jump-helm-line))
+   '(zotxt org-ref csv-mode web-mode tagedit slim-mode scss-mode sass-mode pug-mode helm-css-scss haml-mode emmet-mode counsel-css company-web web-completion-data vmd-mode mmm-mode markdown-toc gh-md emoji-cheat-sheet-plus company-emoji web-beautify tide typescript-mode tern prettier-js nodejs-repl livid-mode skewer-mode js2-refactor yasnippet js2-mode js-doc import-js grizzl impatient-mode htmlize simple-httpd add-node-modules-path yapfify stickyfunc-enhance pytest pyenv-mode py-isort pippel pipenv pyvenv pip-requirements lsp-python-ms live-py-mode importmagic epc ctable concurrent deferred helm-pydoc helm-gtags helm-cscope xcscope ggtags dap-mode lsp-treemacs bui lsp-mode markdown-mode dash-functional cython-mode counsel-gtags counsel swiper ivy company-anaconda company blacken anaconda-mode pythonic ws-butler writeroom-mode winum which-key volatile-highlights vi-tilde-fringe uuidgen use-package treemacs-projectile treemacs-persp treemacs-icons-dired toc-org symon symbol-overlay string-inflection spaceline-all-the-icons restart-emacs request rainbow-delimiters popwin pcre2el password-generator paradox overseer org-superstar open-junk-file nameless multiple-cursors move-text macrostep lorem-ipsum link-hint indent-guide hybrid-mode hungry-delete hl-todo highlight-parentheses highlight-numbers highlight-indentation helm-xref helm-themes helm-swoop helm-purpose helm-projectile helm-mode-manager helm-make helm-ls-git helm-flx helm-descbinds helm-ag google-translate golden-ratio font-lock+ flycheck-package flycheck-elsa flx-ido fill-column-indicator fancy-battery eyebrowse expand-region evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-textobj-line evil-surround evil-numbers evil-nerd-commenter evil-matchit evil-lisp-state evil-lion evil-indent-plus evil-iedit-state evil-goggles evil-exchange evil-escape evil-ediff evil-cleverparens evil-args evil-anzu eval-sexp-fu emr elisp-slime-nav editorconfig dumb-jump dotenv-mode diminish devdocs define-word column-enforce-mode clean-aindent-mode centered-cursor-mode auto-highlight-symbol auto-compile aggressive-indent ace-link ace-jump-helm-line))
+ '(safe-local-variable-values
+   '((eval defface hi-gray
+           '((t
+              (:background "#141414")))
+           :group 'hi-lock-faces)
+     (eval highlight-regexp "x\"[0-9a-z]\\{10\\}\"$" 'hi-gray)
+     (eval defface hi-gray
+           '((t
+              (:background "black")))
+           :group 'hi-lock-faces)
+     (eval setq org-image-actual-height 50)
+     (eval setq org-image-actual-width 50)
+     (eval org-display-inline-images t t)
+     (eval org-toggle-inline-images t t)
+     (eval setq org-image-actual-height 100)
+     (eval setq org-image-actual-width 100)
+     (eval org-image-actual-height nil)
+     (eval org-image-actual-width nil)
+     (eval setq org-image-actual-height nil)
+     (eval setq org-image-actual-height 20)
+     (eval setq org-image-actual-width 20)
+     (eval setq org-image-actual-width 200)
+     (eval setq org-image-actual-width nil)
+     (eval spacemacs/toggle-auto-fill-mode-off)
+     (eval
+      (org-mode
+       (eval org-indent-mode -1)))
+     (javascript-backend . tide)
+     (javascript-backend . tern)
+     (javascript-backend . lsp)))
  '(vlf-application 'dont-ask))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.

@@ -24,3 +24,6 @@
 ;              (neotree-find file-name)))
 ;      (message "Could not find git project root."))))
 (global-set-key [f8] 'neotree-project-dir)
+
+;--------GENERAL PROJECTILE STUFF--------
+(setq projectile-git-submodule-command nil)

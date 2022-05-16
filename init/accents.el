@@ -1,4 +1,5 @@
-;--------ACCENTS--------
+
+                                        ;--------ACCENTS--------
 (define-prefix-command 'stress-map)
 (add-hook 'LaTeX-mode-hook (lambda () (global-set-key (kbd "#") 'stress-map)))
 (add-hook 'text-mode-hook  (lambda () (global-set-key (kbd "#") 'stress-map)))
@@ -26,3 +27,10 @@
 (define-key stress-map (kbd "' O") '(lambda () (interactive) (insert "Ó")))
 (define-key stress-map (kbd "' U") '(lambda () (interactive) (insert "Ú")))
 (define-key stress-map (kbd "' Y") '(lambda () (interactive) (insert "Ý")))
+(define-key stress-map (kbd "; a") '(lambda () (interactive) (insert "ä")))
+(define-key stress-map (kbd "; o") '(lambda () (interactive) (insert "ö")))
+(define-key stress-map (kbd "; u") '(lambda () (interactive) (insert "ü")))
+(define-key stress-map (kbd "; A") '(lambda () (interactive) (insert "Ä")))
+(define-key stress-map (kbd "; O") '(lambda () (interactive) (insert "Ö")))
+(define-key stress-map (kbd "; U") '(lambda () (interactive) (insert "Ü")))
+(define-key stress-map (kbd "; s") '(lambda () (interactive) (insert "ß")))
