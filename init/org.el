@@ -147,7 +147,7 @@
 ; supporting emails in org via org-protocol
 (defun open-mail-in-apple-mail (message)
   (shell-command
-   (format "/Users/macbook/miniconda3/bin/python /Users/macbook/.my_spacemacs.d/init/open_email_url.py \"%s\"" (replace-in-string "\$" "\\$" message))))
+   (format "/Users/macbook/miniconda3/bin/python /Users/macbook/.spacemacs.d/init/open_email_url.py \"%s\"" (replace-in-string "\$" "\\$" message))))
    ;; (format "open -a \"Mail.app\" \"message:%s\"" message)))
 
 ; add support for message:// links
