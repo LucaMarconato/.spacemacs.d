@@ -91,10 +91,32 @@
   :version "24.1"
   :type '(repeat (cons (string :tag "Character")
                        (string :tag "HTML equivalent"))))
+(defun org-agenda-skip-if-scheduled-later ()
+  "If this function returns nil, the current match should not be skipped.
+Otherwise, the function must return a position from where the search
+should be continued."
+  (ignore-errors
+    (let ((subtree-end (save-excursion (org-end-of-subtree t)))
+          (scheduled-seconds
+           (time-to-seconds
+            (org-time-string-to-time
+             (org-entry-get nil "SCHEDULED"))))
+          (now (time-to-seconds (current-time))))
+      (and scheduled-seconds
+           (>= scheduled-seconds now)
+           subtree-end))))
+
+;; (defun my-org-show-only-active-todos ()
+;;   (setq org-agenda-skip-function-global 
+;;         '(org-agenda-skip-entry-if 'todo '("MAYBE" "LATER" "NEVER" "FUTURE") '(org-agenda-skip-if-scheduled-later))))
+
+(setq org-agenda-todo-ignore-scheduled 'future)
+(setq org-agenda-tags-todo-honor-ignore-options t)
 
 (defun my-org-show-only-active-todos ()
   (setq org-agenda-skip-function-global 
         '(org-agenda-skip-entry-if 'todo '("MAYBE" "LATER" "NEVER" "FUTURE"))))
+
 
 (defun my-org-show-all-todos ()
   (setq org-agenda-skip-function-global nil))
@@ -107,7 +129,7 @@
 (setq org-agenda-custom-commands '(("f" "future todos" ((todo "FUTURE")))))
 
 (setq org-todo-keywords
-      '((sequence "WAITING" "PLANNED" "TODO-LATER" "RECURRENT" "TRAVEL" "TODO" "IN-PROGRESS" "TODAY" "NOW" "URGENT" "FUTURE" "NEVER" "MAYBE" "LATER" "|" "REFERENCE" "ENOUGH"
+      '((sequence "WAITING" "CHECK" "TODO-LATER" "RECURRENT" "TRAVEL" "TODO" "IN-PROGRESS" "TODAY" "NOW" "URGENT" "FUTURE" "NEVER" "MAYBE" "LATER" "|" "REFERENCE" "ENOUGH"
                   "DONE")))
 
 (setq org-todo-keyword-faces
@@ -120,7 +142,7 @@
         ("NOW" :background "orange" :foreground "#555555" :weight bold) ;:box (:line-width 2 :style released-button))
         ("RECURRENT" :foreground "yellow" :foreground "#555555") ;:box (:line-width 2 :style released-button))
         ("TODO-LATER" :foreground "lightblue") ;:box (:line-width 2 :style released-button))
-        ("PLANNED" :foreground "lightblue" :weight bold)
+        ("CHECK" :foreground "lightblue" :weight bold)
         ;; ("WAITING" :foreground "lightblue" :weight bold) 
         ("WAITING" :foreground "#98FB98" :weight bold) ;:box (:line-width 2 :style released-button)
         ("URGENT" :background "red" :foreground "#555555" :weight bold) ;:box (:line-width 2 :style released-button))
@@ -130,7 +152,7 @@
 
 ;; ("DONE" :background "forest green" :weight bold)))
 
-(setq org-todo-sort-order '("URGENT" "NOW" "TODAY" "IN-PROGRESS" "TODO" "RECURRENT" "TODO-LATER" "PLANNED" "WAITING" "TRAVEL" "FUTURE" "MAYBE" "LATER" "NEVER" "REFERENCE" "ENOUGH" "DONE"))
+(setq org-todo-sort-order '("URGENT" "NOW" "TODAY" "IN-PROGRESS" "TODO" "RECURRENT" "TODO-LATER" "CHECK" "WAITING" "TRAVEL" "FUTURE" "MAYBE" "LATER" "NEVER" "REFERENCE" "ENOUGH" "DONE"))
 
 (setq org-agenda-custom-commands
       '(("x" agenda)
