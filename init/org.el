@@ -1,3 +1,6 @@
+;; for using emacs keybindings over a tty ssh connection:
+;; https://orgmode.org/manual/TTY-Keys.html
+
 ;; set maximum indentation for description lists
 (setq org-list-description-max-indent 5)
 
@@ -123,6 +126,7 @@ should be continued."
 
 (my-org-show-only-active-todos)
 
+
 ;; (my-org-show-all-todos)
 (global-set-key (kbd "C-c 9") (lambda () (interactive) (my-org-show-only-active-todos)))
 (global-set-key (kbd "C-c 0") (lambda () (interactive) (my-org-show-all-todos)))
@@ -240,7 +244,8 @@ same directory as the org-buffer and insert a link to this file."
 (add-hook 'org-mode-hook 
           (lambda ()
             ;; (defface hi-gray '((t (:foreground "#141414"))) :group 'hi-lock-faces)
-            (highlight-regexp "x\"[0-9a-z]\\{10\\}\"$" 'hi-gray)))
+            (highlight-regexp "x\"[0-9a-z]\\{10\\}\"$" 'hi-gray)
+            (visual-line-mode-set-explicitly)))
 
 ;; something does not work here
 ;; (fset 'convert-to-org-zotero-url
@@ -259,3 +264,13 @@ same directory as the org-buffer and insert a link to this file."
                            (?D . (:foreground "#626211"))
                            (?E . (:foreground "#626211"))
                            ))
+
+;; Make isearch skip folded content in org-mode (https://emacs.stackexchange.com/questions/3929/make-isearch-skip-folded-content-in-org-mode)
+;; M-s i to toggle the serach in visible vs invisible
+(add-hook 'org-mode-hook
+          (lambda ()
+            (make-local-variable 'search-invisible)
+            (setq search-invisible nil)))
+
+;; frees up S-left and S-right (from by windmove). These keybindings are used by the agenda view in org mode to navigate days
+(windmove-default-keybindings 'meta)

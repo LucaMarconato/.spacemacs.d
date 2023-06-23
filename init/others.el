@@ -14,7 +14,8 @@
 (global-set-key (kbd "C-x C-j") 'dired-jump)
 (global-set-key (kbd "M-n") 'back-to-indentation)
 
-(when (fboundp 'winner-mode) (winner-mode 1))
+; (setq winner-dont-bind-my-keys t)
+(when (fboundp 'winner-mode) (lambda () (setq winner-dont-bind-my-keys t) (winner-mode 1)))
 (global-set-key (kbd "C-c h") 'winner-undo)
 (global-set-key (kbd "C-c l") 'winner-redo)
 

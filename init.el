@@ -32,7 +32,9 @@ This function should only modify configuration layer settings."
 
    ;; List of configuration layers to load.
    dotspacemacs-configuration-layers
-   '(csv
+   '(yaml
+     vimscript
+     csv
      html
      markdown
      javascript
@@ -60,7 +62,6 @@ This function should only modify configuration layer settings."
                                                        (multiple-cursors :variables
                                                                          multiple-cursors-backend 'mc
                                                                          mc/cmds-to-run-once '(upcase-region))
-                                                       (company-emoji)
                                                        (ess :variables ess-r-backend 'lsp)
                                                        ;; (org-gcal
                                                        ;;  :ensure t
@@ -417,7 +418,8 @@ It should only modify the values of Spacemacs settings."
 
    ;; If non-nil, start an Emacs server if one is not already running.
    ;; (default nil)
-   dotspacemacs-enable-server nil
+   ;; dotspacemacs-enable-server nil
+   dotspacemacs-enable-server t
 
    ;; Set the emacs server socket location.
    ;; If nil, uses whatever the Emacs default is, otherwise a directory path
@@ -570,11 +572,12 @@ This function is called at the very end of Spacemacs initialization."
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(emojify-emoji-set "twemoji-v2")
+ '(evil-want-Y-yank-to-eol nil)
  '(org-agenda-files
-   '("~/Dropbox/org/back_to_italy.org" "~/Dropbox/org/side_notes/people.org" "~/Dropbox/org/learning.org" "~/Dropbox/org/aesthetic.org" "~/Dropbox/org/free_time.org" "~/Dropbox/org/work.org" "~/Dropbox/org/work/uzh.org" "~/Dropbox/org/work/spatialmuon.org" "~/Dropbox/org/zorzi.org"))
+   '("/Users/macbook/Dropbox/org/notes/general.org" "/Users/macbook/Dropbox/org/tac.org" "/Users/macbook/Dropbox/org/notes/germany/germany.org" "/Users/macbook/Dropbox/org/back_to_italy.org" "/Users/macbook/Dropbox/org/side_notes/people.org" "/Users/macbook/Dropbox/org/learning.org" "/Users/macbook/Dropbox/org/aesthetic.org" "/Users/macbook/Dropbox/org/free_time.org" "/Users/macbook/Dropbox/org/work.org" "/Users/macbook/Dropbox/org/work/uzh.org" "/Users/macbook/Dropbox/org/work/spatialmuon.org" "/Users/macbook/Dropbox/org/zorzi.org"))
  '(org-agenda-tags-column -80)
  '(package-selected-packages
-   '(zotxt org-ref csv-mode web-mode tagedit slim-mode scss-mode sass-mode pug-mode helm-css-scss haml-mode emmet-mode counsel-css company-web web-completion-data vmd-mode mmm-mode markdown-toc gh-md emoji-cheat-sheet-plus company-emoji web-beautify tide typescript-mode tern prettier-js nodejs-repl livid-mode skewer-mode js2-refactor yasnippet js2-mode js-doc import-js grizzl impatient-mode htmlize simple-httpd add-node-modules-path yapfify stickyfunc-enhance pytest pyenv-mode py-isort pippel pipenv pyvenv pip-requirements lsp-python-ms live-py-mode importmagic epc ctable concurrent deferred helm-pydoc helm-gtags helm-cscope xcscope ggtags dap-mode lsp-treemacs bui lsp-mode markdown-mode dash-functional cython-mode counsel-gtags counsel swiper ivy company-anaconda company blacken anaconda-mode pythonic ws-butler writeroom-mode winum which-key volatile-highlights vi-tilde-fringe uuidgen use-package treemacs-projectile treemacs-persp treemacs-icons-dired toc-org symon symbol-overlay string-inflection spaceline-all-the-icons restart-emacs request rainbow-delimiters popwin pcre2el password-generator paradox overseer org-superstar open-junk-file nameless multiple-cursors move-text macrostep lorem-ipsum link-hint indent-guide hybrid-mode hungry-delete hl-todo highlight-parentheses highlight-numbers highlight-indentation helm-xref helm-themes helm-swoop helm-purpose helm-projectile helm-mode-manager helm-make helm-ls-git helm-flx helm-descbinds helm-ag google-translate golden-ratio font-lock+ flycheck-package flycheck-elsa flx-ido fill-column-indicator fancy-battery eyebrowse expand-region evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-textobj-line evil-surround evil-numbers evil-nerd-commenter evil-matchit evil-lisp-state evil-lion evil-indent-plus evil-iedit-state evil-goggles evil-exchange evil-escape evil-ediff evil-cleverparens evil-args evil-anzu eval-sexp-fu emr elisp-slime-nav editorconfig dumb-jump dotenv-mode diminish devdocs define-word column-enforce-mode clean-aindent-mode centered-cursor-mode auto-highlight-symbol auto-compile aggressive-indent ace-link ace-jump-helm-line))
+   '(dactyl-mode vimrc-mode zotxt org-ref csv-mode web-mode tagedit slim-mode scss-mode sass-mode pug-mode helm-css-scss haml-mode emmet-mode counsel-css company-web web-completion-data vmd-mode mmm-mode markdown-toc gh-md emoji-cheat-sheet-plus company-emoji web-beautify tide typescript-mode tern prettier-js nodejs-repl livid-mode skewer-mode js2-refactor yasnippet js2-mode js-doc import-js grizzl impatient-mode htmlize simple-httpd add-node-modules-path yapfify stickyfunc-enhance pytest pyenv-mode py-isort pippel pipenv pyvenv pip-requirements lsp-python-ms live-py-mode importmagic epc ctable concurrent deferred helm-pydoc helm-gtags helm-cscope xcscope ggtags dap-mode lsp-treemacs bui lsp-mode markdown-mode dash-functional cython-mode counsel-gtags counsel swiper ivy company-anaconda company blacken anaconda-mode pythonic ws-butler writeroom-mode winum which-key volatile-highlights vi-tilde-fringe uuidgen use-package treemacs-projectile treemacs-persp treemacs-icons-dired toc-org symon symbol-overlay string-inflection spaceline-all-the-icons restart-emacs request rainbow-delimiters popwin pcre2el password-generator paradox overseer org-superstar open-junk-file nameless multiple-cursors move-text macrostep lorem-ipsum link-hint indent-guide hybrid-mode hungry-delete hl-todo highlight-parentheses highlight-numbers highlight-indentation helm-xref helm-themes helm-swoop helm-purpose helm-projectile helm-mode-manager helm-make helm-ls-git helm-flx helm-descbinds helm-ag google-translate golden-ratio font-lock+ flycheck-package flycheck-elsa flx-ido fill-column-indicator fancy-battery eyebrowse expand-region evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-textobj-line evil-surround evil-numbers evil-nerd-commenter evil-matchit evil-lisp-state evil-lion evil-indent-plus evil-iedit-state evil-goggles evil-exchange evil-escape evil-ediff evil-cleverparens evil-args evil-anzu eval-sexp-fu emr elisp-slime-nav editorconfig dumb-jump dotenv-mode diminish devdocs define-word column-enforce-mode clean-aindent-mode centered-cursor-mode auto-highlight-symbol auto-compile aggressive-indent ace-link ace-jump-helm-line))
  '(safe-local-variable-values
    '((eval defface hi-gray
            '((t
@@ -611,5 +614,5 @@ This function is called at the very end of Spacemacs initialization."
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- )
+ '(highlight-parentheses-highlight ((nil (:weight ultra-bold))) t))
 )

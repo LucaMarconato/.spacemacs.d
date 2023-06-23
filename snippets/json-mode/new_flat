@@ -1,0 +1,12 @@
+# -*- mode: snippet -*-
+# name: new_flat
+# key: new_flat
+# --
+,
+    {
+        "comment": "",
+        "title": "",
+        "url": "",
+        "price": "",
+        "area": ""
+    }
